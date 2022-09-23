@@ -1,4 +1,4 @@
-package com.wooyj.pokedex.core.data.network.model
+package com.wooyj.pokedex.core.network.model
 
 /**
  *

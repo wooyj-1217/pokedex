@@ -1,5 +1,9 @@
 package com.wooyj.pokedex.ui
 
+import com.wooyj.pokedex.core.network.NetworkPokedexDataSource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
 /**
  *
  * Created on 2022/09/23.
@@ -9,5 +13,14 @@ package com.wooyj.pokedex.ui
  * @author wooyj
  *
  */
-class HomeViewModel {
+
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val networkPokedexDataSource: NetworkPokedexDataSource
+) {
+
+
+
+
+
 }
