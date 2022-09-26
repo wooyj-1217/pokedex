@@ -1,11 +1,12 @@
-package com.wooyj.pokedex.core.network.retrofit
+package com.wooyj.pokedex.core.data.network.retrofit
 
 import com.wooyj.pokedex.BuildConfig
-import com.wooyj.pokedex.core.network.NetworkPokedexDataSource
-import com.wooyj.pokedex.core.network.model.NetworkPokemonList
+import com.wooyj.pokedex.core.data.network.NetworkPokedexDataSource
+import com.wooyj.pokedex.core.data.network.model.NetworkPokemonList
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
@@ -14,7 +15,8 @@ import javax.inject.Singleton
 
 
 @Singleton
-class RetrofitPokedexNetwork : NetworkPokedexDataSource {
+class RetrofitPokedexNetwork(/*@Dispatcher(PokedexDispatchers.IO) private val ioDispatcher: CoroutineDispatcher*/) :
+    NetworkPokedexDataSource {
 
     private val CONNECT_TIMEOUT = 20L
     private val WRITE_TIMEOUT = 20L
@@ -55,7 +57,7 @@ class RetrofitPokedexNetwork : NetworkPokedexDataSource {
         .build()
         .create(PokedexApi::class.java)
 
-    override suspend fun getPokemonList(): NetworkPokemonList = networkApi.getPokemonList()
+    override suspend fun getPokemonList(): Response<NetworkPokemonList> = networkApi.getPokemonList()
 
 
 }

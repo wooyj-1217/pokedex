@@ -1,14 +1,20 @@
 package com.wooyj.pokedex.core.data.di
 
+import com.wooyj.pokedex.core.data.network.retrofit.RetrofitPokedexNetwork
+import com.wooyj.pokedex.core.data.repository.PokemonListRepository
+import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface DataModule {
+object DataModule {
 
-
+    @Provides
+    fun providesPokemonListRepository(retrofitPokedexNetwork: RetrofitPokedexNetwork): PokemonListRepository =
+        PokemonListRepository(retrofitPokedexNetwork)
 
 }
